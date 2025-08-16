@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+
+        <record id="course_demo" model="od_openacademy.course">
+            <field name="name">Odoo Technical Demo Course</field>
+            <field name="responsible_id" ref="base.user_demo"/>
+            <field name="course_date" eval="DateTime.today()"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('od_openacademy.course_tag_1'), ref('od_openacademy.course_tag_2')])]"/>
+        </record>
+
+        <record id="session_demo" model="od_openacademy.session">
+            <field name="name">Odoo Technical Demo Session</field>
+            <field name="course_id" ref="od_openacademy.course_demo"/>
+        </record>
+
+    </data>
+</odoo>

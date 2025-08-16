@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!-- Staff Member can only see their assigned sessions -->
+        <record id="session_rule_staff_member" model="ir.rule">
+            <field name="name">Staff Member Session Rule</field>
+            <field name="model_id" ref="model_od_openacademy_session"/>
+            <field name="domain_force">[('instructor_id', '=', user.partner_id.id)]</field>
+            <field name="perm_read">1</field>
+            <field name="groups" eval="[(4, ref('od_openacademy.group_openacademy_staff_member'))]"/>
+        </record>
+
+        <record id="session_rule_manager" model="ir.rule">
+            <field name="name">Manager Session Rule</field>
+            <field name="model_id" ref="model_od_openacademy_session"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read">1</field>
+            <field name="groups" eval="[(4, ref('od_openacademy.group_openacademy_manager'))]"/>
+        </record>
+
+        <record id="session_rule_disable_delete" model="ir.rule">
+            <field name="name">Disable Delete course Rule</field>
+            <field name="model_id" ref="model_od_openacademy_course"/>
+            <field name="domain_force">[('state', 'not in', ('in_progress', 'completed'))]</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">0</field>
+            <field name="perm_read">0</field>
+            <field name="perm_write">0</field>
+        </record>
+
+        <!-- Multi company record rule. -->
+        <record id="course_rule_multi_company" model="ir.rule">
+            <field name="name">Course: Multi Company</field>
+            <field name="model_id" ref="model_od_openacademy_course"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+        </record>
+
+        <!-- Multi company record rule. -->
+        <record id="session_rule_multi_company" model="ir.rule">
+            <field name="name">Session: Multi Company</field>
+            <field name="model_id" ref="model_od_openacademy_session"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+        </record>
+
+    </data>
+</odoo>

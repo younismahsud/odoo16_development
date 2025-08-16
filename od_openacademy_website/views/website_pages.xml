@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <template id="about_us_page" name="About Us Page">
+            <t t-call="website.layout">
+                <div class="container mt-5">
+                    <div class="text-center">
+                        <h1>About Us</h1>
+                        <p>Welcome to <strong>Odoo Discussions</strong>, your go-to channel for learning Odoo! Our goal is to make Odoo development accessible to everyone through clear and concise tutorials.</p>
+                    </div>
+                    <div class="mt-4">
+                        <h2>What We Offer</h2>
+                        <ul>
+                            <li>Step-by-step guides on Odoo installation and development</li>
+                            <li>Comprehensive courses on Odoo customization</li>
+                            <li>Expert tips and tricks for developers</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <h2>Subscribe to Our YouTube Channel</h2>
+                        <p>Visit our YouTube channel: <a href="https://www.youtube.com/@odoodiscussions" target="_blank">Odoo Discussions</a></p>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <record id="aboutus_page" model="website.page">
+            <field name="url">/aboutus</field>
+            <field name="is_published">True</field>
+            <field name="view_id" ref="about_us_page"/>
+        </record>
+
+    </data>
+</odoo>

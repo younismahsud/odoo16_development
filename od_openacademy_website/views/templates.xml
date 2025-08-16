@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="odoodiscussions_classess" name="Odoo Discussions Classes">
+        <t t-call="website.layout">
+            <title>Odoo Discussions</title>
+            <h2> <span t-esc="message"/> </h2>
+            <ul>
+                <t t-foreach="courses" t-as="course">
+                    <li>
+                        [<a t-attf-href="/odoodiscussions/{{ slug(course) }}">
+                            <t t-esc="course.code"/>
+                        </a>]
+                        <span t-field="course.name"/>
+                    </li>
+                </t>
+            </ul>
+        </t>
+    </template>
+
+    <template id="portal_my_classes" name="My Quotations">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Classes</t>
+            </t>
+            <t t-if="courses" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Course #</th>
+                        <th class="text-end">Course Name</th>
+                        <th class="text-end">Course Date</th>
+                        <th class="text-end">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="courses" t-as="course">
+                    <tr>
+                        <td>
+                            <t t-esc="course.code"/>
+                        </td>
+                        <td class="text-end"><span t-field="course.name"/></td>
+                        <td class="text-end"><span t-field="course.course_date"/></td>
+                        <td class="text-end">
+                            <span t-field="course.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            <p t-else="">There are currently no courses.</p>
+        </t>
+    </template>
+
+<!--    <template id="odoodiscussions_course" name="Odoo Discussions Course">-->
+<!--        <t t-call="website.layout">-->
+<!--            <title>Odoo Discussions</title>-->
+<!--            <h2> <span t-esc="course.name"/> </h2>-->
+<!--            <h2> <span t-esc="course.code"/> </h2>-->
+<!--            <h2> <span t-esc="course.responsible_id.name"/> </h2>-->
+<!--        </t>-->
+<!--    </template>-->
+
+    <template id="odoodiscussions_course" name="My Course" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <title>Odoo Discussions</title>
+            <h2> <span t-esc="course.name"/> </h2>
+            <h2> <span t-esc="course.code"/> </h2>
+            <h2> <span t-esc="course.responsible_id.name"/> </h2>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_course" name="Portal layout : openacademy menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'course'" t-attf-class="breadcrumb-item #{'active ' if not course else ''}">
+                <a t-if="course" t-attf-href="/odoodiscussions/classes?{{ keep_query() }}">Courses</a>
+                <t t-else="">Courses</t>
+            </li>
+            <li t-if="course" class="breadcrumb-item active">
+                <t t-out="course.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_classes" name="Classes" customize_show="True" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Classes</t>
+                <t t-set="url" t-value="'/odoodiscussions/classes'"/>
+                <t t-set="placeholder_count" t-value="'course_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

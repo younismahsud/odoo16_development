@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="openacademy_manager_course" model="ir.model.access">
+            <field name="name">Openacademy Manager Course</field>
+            <field name="model_id" ref="model_od_openacademy_course"/>
+            <field name="group_id" ref="od_openacademy.group_openacademy_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="openacademy_public_course" model="ir.model.access">
+            <field name="name">Openacademy Public Course</field>
+            <field name="model_id" ref="model_od_openacademy_course"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="openacademy_manager_course_internal" model="ir.model.access">
+            <field name="name">Openacademy Internal Course</field>
+            <field name="model_id" ref="model_od_openacademy_course"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="openacademy_manager_sessions" model="ir.model.access">
+            <field name="name">Openacademy Manager Sessions</field>
+            <field name="model_id" ref="model_od_openacademy_session"/>
+            <field name="group_id" ref="od_openacademy.group_openacademy_manager"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="openacademy_internal_sessions" model="ir.model.access">
+            <field name="name">Openacademy Internal Sessions</field>
+            <field name="model_id" ref="model_od_openacademy_session"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="openacademy_staff_member_course" model="ir.model.access">
+            <field name="name">Openacademy Staff member Course</field>
+            <field name="model_id" ref="model_od_openacademy_course"/>
+            <field name="group_id" ref="od_openacademy.group_openacademy_staff_member"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="openacademy_staff_member_sessions" model="ir.model.access">
+            <field name="name">Openacademy Staff Member Sessions</field>
+            <field name="model_id" ref="model_od_openacademy_session"/>
+            <field name="group_id" ref="od_openacademy.group_openacademy_staff_member"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="openacademy_course_tag" model="ir.model.access">
+            <field name="name">Openacademy Course Tag</field>
+            <field name="model_id" ref="model_openacademy_course_tag"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+    </data>
+</odoo>

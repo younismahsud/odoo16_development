@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="course_tag_1" model="openacademy.course.tag">
+            <field name="name">Odoo Technical</field>
+        </record>
+
+        <record id="course_tag_2" model="openacademy.course.tag">
+            <field name="name">Odoo Functional</field>
+        </record>
+
+        <record id="course_tag_3" model="openacademy.course.tag">
+            <field name="name">Odoo</field>
+        </record>
+
+        <record id="course_tag_4" model="openacademy.course.tag">
+            <field name="name">Odoo 16</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="openacademy_security_categ" model="ir.module.category">
+            <field name="name">OpenAcademy</field>
+            <field name="description">Manage access to class and sessions</field>
+            <field name="sequence" eval="10"/>
+        </record>
+
+        <record id="group_openacademy_staff_member" model="res.groups">
+            <field name="name">Staff Member</field>
+            <field name="category_id" ref="od_openacademy.openacademy_security_categ"/>
+        </record>
+
+        <record id="group_openacademy_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="od_openacademy.openacademy_security_categ"/>
+            <field name="implied_ids" eval="[(4, ref('od_openacademy.group_openacademy_staff_member'))]"/>
+        </record>
+
+    </data>
+</odoo>

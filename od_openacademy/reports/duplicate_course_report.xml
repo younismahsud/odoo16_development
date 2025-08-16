@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_openacademy_course_without_header">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.responsible_id.lang"/>
+                <t t-call="od_openacademy.report_openacademy_course_document_without_header" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="report_openacademy_course_document_without_header">
+        <t t-set="o" t-value="o.with_context(lang=lang)"/>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <style>
+                    h2 {font-family: 'LilitaOne-Regular';}
+                    th {font-family: 'Platypi-ExtraBold';}
+                    td {font-family: 'Platypi-LightItalic';}
+                </style>
+                <div class="row">
+                    <div class="col-6">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <h4>Responsible:
+                            <span t-field="o.responsible_id"/>
+                        </h4>
+                        <t t-set="total_seats" t-value="o.get_total_seats()"/>
+                        <h4>Total Seats: <span t-esc="total_seats"/></h4>
+                    </div>
+                    <div class="col-6">
+<!--                        <img t-att-src="'/report/barcode/Code128/' + o.code" style="width:400px;height:100px" alt="Barcode"/>-->
+                        <img t-att-src="'/report/barcode/QR/' + o.code" style="width:150px;height:150px" alt="QR CODE"/>
+                    </div>
+                </div>
+                <hr/>
+                <h4>Sessions Detail</h4>
+                <table class="table table-bordered">
+                    <head>
+                        <tr>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>Duration</th>
+                        </tr>
+                    </head>
+                    <body>
+                        <t t-foreach="o.session_ids" t-as="session">
+                            <tr>
+                                <td>
+                                    <span t-field="session.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="session.start_date"/>
+                                </td>
+                                <td>
+                                    <span t-field="session.duration"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </body>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <record id="paperformat_course_without_header" model="report.paperformat">
+        <field name="name">A4 course without header</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">7</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="disable_shrinking" eval="True"/>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="openacademy_course_duplicate" model="ir.actions.report">
+        <field name="name">Print without header</field>
+        <field name="model">od_openacademy.course</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">od_openacademy.report_openacademy_course_without_header</field>
+        <field name="report_file">od_openacademy.report_openacademy_course_without_header</field>
+        <field name="binding_model_id" ref="model_od_openacademy_course"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="od_openacademy.paperformat_course_without_header"/>
+    </record>
+
+</odoo>

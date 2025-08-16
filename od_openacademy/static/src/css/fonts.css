@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'LilitaOne-Regular';
+    src: url(/od_openacademy/static/src/fonts/Lilita_One/LilitaOne-Regular.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'Platypi-ExtraBold';
+    src: url(/od_openacademy/static/src/fonts/Platypi/Platypi-ExtraBold.ttf) format("truetype")
+}
+
+@font-face {
+    font-family: 'Platypi-LightItalic';
+    src: url(/od_openacademy/static/src/fonts/Platypi/Platypi-LightItalic.ttf) format("truetype")
+}

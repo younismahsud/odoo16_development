@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="track_session_template">
+        <div>
+            <strong>Session information has been updated.</strong>
+        </div>
+        <ul>
+            <li>
+                <t t-esc="session.name"/>
+            </li>
+            <t t-if="'instructor_name' in data">
+                <li>
+                    Instructor: <t t-esc="session.instructor_id.name"/> -> <t t-esc="data.get('instructor_name')"/>
+                </li>
+            </t>
+            <t t-if="'start_date' in data">
+                <li>
+                    Start Date: <t t-esc="session.start_date"/> -> <t t-esc="data.get('start_date')"/>
+                </li>
+            </t>
+        </ul>
+    </template>
+
+</odoo>
